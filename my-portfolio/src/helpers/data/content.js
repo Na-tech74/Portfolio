@@ -1,7 +1,7 @@
 
 import { images } from "./images"; // file images.js đã config đường dẫn ảnh
 import { icons } from "../icons/icons"; // file icons.js đã config FontAwesome
-import { icon } from "@fortawesome/fontawesome-svg-core";
+
 
 export const userData = {
   name: "Nam Nguyễn",
@@ -49,8 +49,8 @@ export const servicesData = [
   },
   {
     icon: icons.webdev,
-    title: "Phát triển website (Fullstack)",
-    text: "Phát triển website fullstack (MERN, FastAPI, Flask).",
+    title: "Phát triển Backend",
+    text: "Xây dựng API mạnh mẽ với Express.js, FastAPI, Flask, ASP.NET.",
   },
   {
     icon: icons.mobile,
@@ -226,13 +226,23 @@ export const skillsData = [
 ];
 
 export const projectsData = [
-  { title: "GnarAI ứng dụng LLM triển khai Docker ( Đồ án chuyên ngành )", category: "Applications", image: images.projects.ganrAI },
-  { title: "Dự án AlphaAI (Cuộc thi Trí tuệ nhân tạo)", category: "Applications", image: images.projects.alphaAI },
+  {
+    title: "GnarAI ứng dụng LLM triển khai Docker ( Đồ án chuyên ngành )",
+    category: "Applications",
+    image: images.projects.ganrAI,
+    link: "https://github.com/Na-tech74/GnarAI"
+  },
+  {
+    title: "Dự án AlphaAI (Cuộc thi Trí tuệ nhân tạo)",
+    category: "Applications",
+    image: images.projects.alphaAI,
+    link: "https://github.com/Na-tech74/AlphaAI",
+  },
   {
     title: "NStore ( Ứng dụng Thương mại điện tử bán đồ công nghệ Apple)",
     category: "Applications",
     image: images.projects.nstore,
-    link: "https://drive.google.com/drive/u/1/folders/1tQWw-Sljl7EH_7wrxTVZIwHzr2GzXecJ"
+    link: "https://github.com/Na-tech74/Fullstack-MERN"
   },
   { title: "Thiết kế website giới thiệu Apple", category: "Web design", image: images.projects.wd1 },
   { title: "Thiết kế Website bán hàng", category: "Web design", image: images.projects.wd2 },

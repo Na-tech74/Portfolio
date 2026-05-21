@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import AboutPage from './pages/AboutPage';
@@ -6,43 +7,36 @@ import ResumePage from './pages/ResumePage';
 import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
-import './assets/css/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/css/portfolio.css';
 
 const App = () => {
-  const [activePage, setActivePage] = useState('about');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  useEffect(() => {
-    const script1 = document.createElement('script');
-    script1.type = 'module';
-    script1.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js';
-    document.body.appendChild(script1);
-
-    const script2 = document.createElement('script');
-    script2.noModule = true;
-    script2.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
-    document.body.appendChild(script2);
-
-    return () => {
-      document.body.removeChild(script1);
-      document.body.removeChild(script2);
-    };
-  }, []);
+  const [activePage, setActivePage] = useState('bản thân');
 
   return (
-    <main>
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-      <div className="main-content">
-        <Navbar activePage={activePage} setActivePage={setActivePage} />
-        
-        {/* Render all pages with conditional active class */}
-        <AboutPage isActive={activePage === 'bản thân'}/>
-        <ResumePage isActive={activePage === 'học vấn'} />
-        <PortfolioPage isActive={activePage === 'portfolio'} />
-        <BlogPage isActive={activePage === 'blog'} />
-        <ContactPage isActive={activePage === 'liên hệ'} />
-      </div>
-    </main>
+    <>
+      <div className="blob blob-1" />
+      <div className="blob blob-2" />
+      <div className="blob blob-3" />
+
+      <Container fluid className="py-4 px-3 px-md-4" style={{ maxWidth: 1280, position: 'relative', zIndex: 1 }}>
+        <Row className="g-4">
+          <Col lg={4} xl={3}>
+            <Sidebar />
+          </Col>
+          <Col lg={8} xl={9}>
+            <Navbar activePage={activePage} setActivePage={setActivePage} />
+            <div className="mt-4">
+              {activePage === 'bản thân' && <AboutPage />}
+              {activePage === 'học vấn' && <ResumePage />}
+              {activePage === 'portfolio' && <PortfolioPage />}
+              {activePage === 'blog' && <BlogPage />}
+              {activePage === 'liên hệ' && <ContactPage />}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

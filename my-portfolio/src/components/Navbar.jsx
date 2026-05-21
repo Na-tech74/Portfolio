@@ -1,25 +1,25 @@
-// components/Navbar.jsx
 import React from 'react';
 
-const Navbar = ({ activePage, setActivePage }) => {
-  const pages = ['Bản thân', 'Học vấn', 'Portfolio', 'Blog', 'Liên hệ'];
+const pages = [
+  { key: 'bản thân', label: 'Bản thân', icon: 'user' },
+  { key: 'học vấn', label: 'Học vấn', icon: 'book-open' },
+  { key: 'portfolio', label: 'Portfolio', icon: 'folder-open' },
+  { key: 'blog', label: 'Blog', icon: 'book-open' },
+  { key: 'liên hệ', label: 'Liên hệ', icon: 'paper-plane' },
+];
 
-  return (
-    <nav className="navbar">
-      <ul className="navbar-list">
-        {pages.map(page => (
-          <li key={page} className="navbar-item">
-            <button 
-              className={`navbar-link ${activePage === page.toLowerCase() ? 'active' : ''}`}
-              onClick={() => setActivePage(page.toLowerCase())}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
+const Navbar = ({ activePage, setActivePage }) => (
+  <div className="nav-wrap animate-in">
+    {pages.map(page => (
+      <button
+        key={page.key}
+        className={`nav-btn ${activePage === page.key ? 'active' : ''}`}
+        onClick={() => setActivePage(page.key)}
+      >
+        {page.label}
+      </button>
+    ))}
+  </div>
+);
 
 export default Navbar;
