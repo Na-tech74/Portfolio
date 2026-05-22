@@ -2,6 +2,7 @@ import React from 'react';
 import { ProgressBar, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { educationData, experienceData, skillsData } from '../helpers/data/content';
+import { useLanguage } from '../helpers/i18n/context';
 
 const SectionTitle = ({ icon, children }) => (
   <div className="section-title">
@@ -46,30 +47,37 @@ const TimelineSection = ({ title, icon, items }) => (
   </div>
 );
 
-const ResumePage = () => (
-  <div className="d-flex flex-column gap-4">
-    <TimelineSection title="Học tập" icon="book-open" items={educationData} />
-    <TimelineSection title="Kinh nghiệm" icon="briefcase" items={experienceData} />
+const ResumePage = () => {
+  const { t, lang } = useLanguage();
+  const education = educationData(lang);
+  const experience = experienceData(lang);
+  const skills = skillsData(lang);
 
-    <div className="card animate-in">
-      <div className="p-4 p-md-5">
-        <SectionTitle icon="chart-simple">Kỹ năng</SectionTitle>
-        <Row className="g-4">
-          {skillsData.map((skill, i) => (
-            <Col md={6} key={i}>
-              <div>
-                <div className="d-flex justify-content-between align-items-center mb-1">
-                  <span className="small fw-semibold">{skill.name}</span>
-                  <span className="badge-soft">{skill.value}%</span>
+  return (
+    <div className="d-flex flex-column gap-4">
+      <TimelineSection title={t('resume.education')} icon="book-open" items={education} />
+      <TimelineSection title={t('resume.experience')} icon="briefcase" items={experience} />
+
+      <div className="card animate-in">
+        <div className="p-4 p-md-5">
+          <SectionTitle icon="chart-simple">{t('resume.skills')}</SectionTitle>
+          <Row className="g-4">
+            {skills.map((skill, i) => (
+              <Col md={6} key={i}>
+                <div>
+                  <div className="d-flex justify-content-between align-items-center mb-1">
+                    <span className="small fw-semibold">{skill.name}</span>
+                    <span className="badge-soft">{skill.value}%</span>
+                  </div>
+                  <ProgressBar now={skill.value} className="skill-bar" />
                 </div>
-                <ProgressBar now={skill.value} className="skill-bar" />
-              </div>
-            </Col>
-          ))}
-        </Row>
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ResumePage;

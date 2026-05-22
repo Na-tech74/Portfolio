@@ -3,21 +3,34 @@ import { Row, Col, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icons } from '../helpers/icons/icons';
 import { projectsData } from '../helpers/data/content';
-
-const filters = ['All', 'Web design', 'Applications', 'Web development', 'Datasets', 'Shared projects & Documents'];
+import { useLanguage } from '../helpers/i18n/context';
 
 const PortfolioPage = () => {
+  const { t, lang } = useLanguage();
   const [selected, setSelected] = useState('All');
+  const projects = projectsData(lang);
+
+  const filters = ['All', 'Web design', 'Applications', 'Web development', 'Datasets', 'Shared projects & Documents'];
+
+  const filterKeys = {
+    'All': 'portfolio.all',
+    'Web design': 'portfolio.webDesign',
+    'Applications': 'portfolio.applications',
+    'Web development': 'portfolio.webDev',
+    'Datasets': 'portfolio.datasets',
+    'Shared projects & Documents': 'portfolio.shared',
+  };
+
   const filtered = selected === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category === selected);
+    ? projects
+    : projects.filter(p => p.category === selected);
 
   return (
     <div className="card animate-in">
       <div className="p-4 p-md-5">
         <div className="section-title">
           <span className="icon-box"><FontAwesomeIcon icon="folder-open" /></span>
-          Dự án
+          {t('portfolio.title')}
         </div>
 
         <Stack direction="horizontal" gap={2} className="flex-wrap mb-4 pb-2">
@@ -27,13 +40,13 @@ const PortfolioPage = () => {
               className={`filter-btn ${selected === f ? 'active' : ''}`}
               onClick={() => setSelected(f)}
             >
-              {f}
+              {t(filterKeys[f])}
             </button>
           ))}
         </Stack>
 
         {filtered.length === 0 ? (
-          <p className="text-muted text-center py-4 mb-0">Không có dự án nào trong danh mục này.</p>
+          <p className="text-muted text-center py-4 mb-0">{t('portfolio.empty')}</p>
         ) : (
           <Row className="g-4">
             {filtered.map((project, i) => (

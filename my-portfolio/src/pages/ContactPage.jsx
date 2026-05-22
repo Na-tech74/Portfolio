@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icons } from '../helpers/icons/icons';
+import { useLanguage } from '../helpers/i18n/context';
 
 const ContactPage = () => {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ fullname: '', email: '', message: '' });
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = e => {
     e.preventDefault();
-    alert('Message sent successfully!');
+    alert(t('contact.success'));
     setForm({ fullname: '', email: '', message: '' });
   };
 
@@ -20,7 +22,7 @@ const ContactPage = () => {
         <div className="p-4 p-md-5">
           <div className="section-title">
             <span className="icon-box"><FontAwesomeIcon icon="location-dot" /></span>
-            Vị trí
+            {t('contact.location')}
           </div>
           <div className="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm">
             <iframe
@@ -36,7 +38,7 @@ const ContactPage = () => {
         <div className="p-4 p-md-5">
           <div className="section-title">
             <span className="icon-box"><FontAwesomeIcon icon={icons.paperPlane} /></span>
-            Liên hệ
+            {t('contact.form')}
           </div>
           <Form onSubmit={handleSubmit}>
             <Row className="g-3 mb-3">
@@ -44,7 +46,7 @@ const ContactPage = () => {
                 <Form.Control
                   type="text"
                   name="fullname"
-                  placeholder="Họ tên"
+                  placeholder={t('contact.name')}
                   value={form.fullname}
                   onChange={handleChange}
                   required
@@ -55,7 +57,7 @@ const ContactPage = () => {
                 <Form.Control
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder={t('contact.email')}
                   value={form.email}
                   onChange={handleChange}
                   required
@@ -67,7 +69,7 @@ const ContactPage = () => {
               as="textarea"
               rows={4}
               name="message"
-              placeholder="Nội dung"
+              placeholder={t('contact.message')}
               value={form.message}
               onChange={handleChange}
               required
@@ -80,7 +82,7 @@ const ContactPage = () => {
               style={{ padding: '10px 24px', fontSize: '0.9rem' }}
             >
               <FontAwesomeIcon icon={icons.paperPlane} />
-              Gửi tin nhắn
+              {t('contact.send')}
             </button>
           </Form>
         </div>
