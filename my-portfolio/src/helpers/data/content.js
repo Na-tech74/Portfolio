@@ -382,18 +382,11 @@ const projectsDataFull = [
     link: "https://github.com/Na-tech74/GnarAI"
   },
   {
-    titleVi: "Dự án AlphaAI (Cuộc thi Trí tuệ nhân tạo)",
-    titleEn: "AlphaAI Project (AI Competition)",
-    category: "Applications",
-    image: images.projects.alphaAI,
-    link: "https://github.com/Na-tech74/AlphaAI",
-  },
-  {
-    titleVi: "NStore (Ứng dụng Thương mại điện tử bán đồ công nghệ Apple)",
-    titleEn: "NStore (Apple Tech E-commerce Application)",
+    titleVi: "Xây dựng ứng dụng web NamAcoustic RAG Chatbot ",
+    titleEn: "Developed the NamAcoustic web application with an integrated RAG Chatbot system",
     category: "Applications",
     image: images.projects.nstore,
-    link: "https://github.com/Na-tech74/Fullstack-MERN"
+    link: "https://github.com/Na-tech74/mern-guitar-shop-rag"
   },
   { titleVi: "Thiết kế website giới thiệu Apple", titleEn: "Apple Introduction Website Design", category: "Web design", image: images.projects.wd1 },
   { titleVi: "Thiết kế Website bán hàng", titleEn: "E-commerce Website Design", category: "Web design", image: images.projects.wd2 },
